@@ -8,11 +8,15 @@ import { useNavigate } from 'react-router-dom';
 import Navbar from '../../components/Navbar/Navbar';
 import Searchbar from '../../components/Searchbar/Searchbar';
 import Footer from '../../components/Footer/Footer';
+import { Accordion, AccordionDetails, AccordionSummary, useMediaQuery } from '@mui/material';
+import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 
 
 export default function HomePage() {
     const navigate = useNavigate()
 
+    const isMobile = useMediaQuery('(max-width:745px)')
+    const sm = useMediaQuery('(max-width:425px)')
     return (
         <div className='Home' >
             <header>
@@ -34,37 +38,79 @@ export default function HomePage() {
                         <p className='subtitle'>Connect instantly with a 24x7 specialist or choose to video visit a particular doctor.</p>
                         <button>Find Centers</button>
                     </div>
-                    <img src="/images/hero-section/hero-img.svg" alt="hero-img" className='hero-img' />
+                    <div className='hero-img'>
+                        <img src="/images/hero-section/hero-img.svg" alt="hero-img" className='hero-img' />
+                    </div>
+
                 </div>
 
                 <div className='search-section'>
 
-                    <Searchbar/>
+                    <Searchbar />
 
-                    <p>You may be looking for</p>
+                    {!isMobile
+                        ? <>
+                            <p>You may be looking for</p>
 
-                    <div className='card-service'>
-                        <div onClick={() => navigate('find-doctors')}>
-                            <img src="/images/search-section/Doctor.svg" alt="Doctor" />
-                            <span>Doctors</span>
-                        </div>
-                        <div>
-                            <img src="/images/search-section/Drugstore.svg" alt="Drugstore" />
-                            <span>Labs</span>
-                        </div>
-                        <div>
-                            <img src="/images/search-section/Hospital.svg" alt="Hospital" />
-                            <span>Hospitals</span>
-                        </div>
-                        <div>
-                            <img src="/images/search-section/Capsule.svg" alt="Capsule" />
-                            <span>Medical Store</span>
-                        </div>
-                        <div>
-                            <img src="/images/search-section/Ambulance.svg" alt="Ambulance" />
-                            <span>Ambulance</span>
-                        </div>
-                    </div>
+                            <div className='card-service'>
+                                <div onClick={() => navigate('find-doctors')}>
+                                    <img src="/images/search-section/Doctor.svg" alt="Doctor" />
+                                    <span>Doctors</span>
+                                </div>
+                                <div>
+                                    <img src="/images/search-section/Drugstore.svg" alt="Drugstore" />
+                                    <span>Labs</span>
+                                </div>
+                                <div>
+                                    <img src="/images/search-section/Hospital.svg" alt="Hospital" />
+                                    <span>Hospitals</span>
+                                </div>
+                                <div>
+                                    <img src="/images/search-section/Capsule.svg" alt="Capsule" />
+                                    <span>Medical Store</span>
+                                </div>
+                                <div>
+                                    <img src="/images/search-section/Ambulance.svg" alt="Ambulance" />
+                                    <span>Ambulance</span>
+                                </div>
+                            </div>
+                        </>
+                        : <Accordion style={{
+                            width: '100%', borderRadius: '8px',
+                            background: '#f0f7fc'
+                        }}>
+                            <AccordionSummary
+                                expandIcon={<ExpandMoreIcon />}
+                                aria-controls="panel2-content"
+                                id="panel2-header"
+                            >
+                                <p style={{ margin: 0, textAlign: 'center' }}>You may be looking for</p>
+                            </AccordionSummary>
+                            <AccordionDetails>
+                                <div className='card-service'>
+                                    <div onClick={() => navigate('find-doctors')}>
+                                        <img src="/images/search-section/Doctor.svg" alt="Doctor" />
+                                        <span>Doctors</span>
+                                    </div>
+                                    <div>
+                                        <img src="/images/search-section/Drugstore.svg" alt="Drugstore" />
+                                        <span>Labs</span>
+                                    </div>
+                                    <div>
+                                        <img src="/images/search-section/Hospital.svg" alt="Hospital" />
+                                        <span>Hospitals</span>
+                                    </div>
+                                    <div>
+                                        <img src="/images/search-section/Capsule.svg" alt="Capsule" />
+                                        <span>Medical Store</span>
+                                    </div>
+                                    <div>
+                                        <img src="/images/search-section/Ambulance.svg" alt="Ambulance" />
+                                        <span>Ambulance</span>
+                                    </div>
+                                </div>
+                            </AccordionDetails>
+                        </Accordion>}
                 </div>
             </div>
 
@@ -77,7 +123,7 @@ export default function HomePage() {
                         }}
                         modules={[Autoplay, Pagination]}
                         spaceBetween={30}
-                        slidesPerView={3}
+                        slidesPerView={!isMobile ? 3 : !sm ? 2 : 1}
                         loop={true}
                         autoplay={{
                             delay: 3000,
@@ -154,7 +200,7 @@ export default function HomePage() {
                                 dynamicBullets: true,
                             }}
                             modules={[Autoplay, Pagination]}
-                            slidesPerView={4}
+                            slidesPerView={!isMobile ? 4 : !sm ? 3 : 2}
                             spaceBetween={50}
                             centeredSlides={true}
                             loop={true}
@@ -230,10 +276,13 @@ export default function HomePage() {
                 </div>
 
                 <div className='services-section'>
-                    <img src="/images/services-section/img.svg" alt="img" />
+                    <div className='services-img'>
+
+                        <img src="/images/services-section/img.svg" alt="img" />
+                    </div>
                     <div className='content'>
                         <p className='tag-line'>HELPING PATIENTS FROM AROUND THE GLOBE!!</p>
-                        <p className='title'>
+                        <p className='title' style={{ display: isMobile && 'flex', flexDirection: isMobile && 'column' }}>
                             <span>Patient</span>
                             <span>Caring</span>
                         </p>
@@ -247,8 +296,8 @@ export default function HomePage() {
                 </div>
 
                 <div className='news-section'>
-                    <p className='title'>Read Our Latest News</p>
-                    <div className='content'>
+                    <p className='title' style={{ textAlign: 'center' }}>Read Our Latest News</p>
+                    <div className='content' style={{ gap: sm && '2px' }}>
                         <div className='card'>
                             <img src="/images/news-section/img.svg" alt="img" />
                             <div>
@@ -265,14 +314,14 @@ export default function HomePage() {
                                 <p className='profile-name'><img src="/images/news-section/icon.svg" alt="icon" />Rebecca Lee</p>
                             </div>
                         </div>
-                        <div className='card'>
+                        {!sm && <div className='card'>
                             <img src="/images/news-section/img.svg" alt="img" />
                             <div>
                                 <p className='header'>Medical | March 31, 2022</p>
                                 <p className='title'>6 Tips To Protect Your Mental Health When You're Sick</p>
                                 <p className='profile-name'><img src="/images/news-section/icon.svg" alt="icon" />Rebecca Lee</p>
                             </div>
-                        </div>
+                        </div>}
                     </div>
                 </div>
 

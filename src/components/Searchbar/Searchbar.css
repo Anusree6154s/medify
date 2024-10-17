@@ -2,6 +2,7 @@
   width: 950px;
   display: flex;
   justify-content: space-around;
+  align-items: center;
   /* border: red solid 2px; */
 }
 
@@ -15,13 +16,34 @@
   display: flex;
 }
 
+@media (max-width: 1085px) {
+  .search-section .search {
+    width: 600px;
+  }
+  .search-section .search-input-container {
+    width: 200px;
+  }
+}
+
+@media (max-width: 956px) {
+  .search-section .search {
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+  }
+
+  .search-section .search-input-container {
+    width: 80%;
+  }
+}
+
 .search-section .search-input-container img {
   width: 24px;
   height: 24px;
   margin: 13px;
 }
 
-.search-section select{
+.search-section select {
   flex: 1;
   appearance: none;
   background: none;
@@ -53,6 +75,14 @@
 .search-section .card-service {
   display: flex;
   justify-content: space-around;
+}
+
+@media (max-width: 1085px) {
+  .search-section .card-service {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
 }
 
 .search-section .card-service div {

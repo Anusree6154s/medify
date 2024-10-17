@@ -6,6 +6,7 @@ import AppProviders from './contexts/AppProviders';
 import HomePage from './pages/Home/HomePage';
 import FindDoctorsPage from './pages/FindDoctors/FindDoctorsPage';
 import MyBookingsPage from './pages/MyBookings/MyBookingsPage';
+import './App.css'
 
 function App() {
   return (

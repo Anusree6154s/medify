@@ -1,5 +1,6 @@
-.MyBookings {
-  width: 1440px;
+.MyBookingsPage {
+  width: 100%;
+  /* width: 1440px; */
   background: linear-gradient(
     81deg,
     #eff5fe 9.01%,
@@ -7,15 +8,39 @@
   );
 }
 
-.MyBookings .blue-part {
+/* .MyBookingsPage header {
+  width: 100%;
+  height: fit-content;
+  padding: 10px;
+  text-align: center;
+  background: #2aa7ff;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 21px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+} */
+
+.MyBookingsPage .blue-part {
   display: flex;
   justify-content: space-around;
   align-items: center;
 }
-.MyBookings .blue-part span {
+
+.MyBookingsPage .blue-part span {
   color: white;
   font-size: 40px;
   font-weight: 700;
+  text-align: center;
+}
+
+@media(max-width:768px){
+  .MyBookingsPage .blue-part span {
+    font-size: 20px;
+  }
+  
 }
 
 .booking-search-section {
@@ -48,6 +73,31 @@
   flex: 1;
 }
 
+@media (max-width: 1024px) {
+  .MyBookingsPage .blue-part {
+    height: fit-content;
+    align-items: center;
+  }
+
+  .booking-search-section {
+    top: 0px;
+    width: 70%;
+  }
+}
+
+@media (max-width: 768px) {
+  .MyBookingsPage .blue-part {
+    height: fit-content;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .booking-search-section {
+    top: 0px;
+    width: 90%;
+  }
+}
+
 .booking-search-section button {
   width: 177px;
   height: 50px;
@@ -62,19 +112,58 @@
   gap: 6px;
 }
 
-.MyBookings .card {
-  width: 786px;
-  height: 268.38px;
+@media (max-width: 768px) {
+  .booking-search-section select {
+    width: 50%;
+  }
+  .booking-search-section button {
+    width: 30%;
+  }
+}
+
+@media (max-width: 425px) {
+  .booking-search-section {
+    flex-direction: column;
+    height: fit-content;
+  }
+
+  .booking-search-section select {
+    width: 90%;
+  }
+  .booking-search-section button {
+    width: 90%;
+  }
+}
+
+@media(max-width:425px){
+  .MyBookingsPage .booking-cards-container {
+    margin-top: 80px;
+  }
+}
+
+@media(max-width:375px){
+  .MyBookingsPage .booking-cards-container {
+    margin-top: 140px;
+  }
+}
+
+
+.MyBookingsPage .card {
+  width: 100%;
+  /* width: 786px; */
+  height: fit-content;
+  /* height: 268.38px; */
   border-radius: 15px;
   margin-top: 25px;
 
   display: flex;
   justify-content: space-between;
+  flex-wrap: wrap;
   padding: 30px;
   background-color: white;
 }
 
-.MyBookings .action {
+.MyBookingsPage .action {
   display: flex;
   justify-content: start !important;
   flex-direction: row !important;
@@ -83,7 +172,7 @@
   margin-top: 24px;
 }
 
-.MyBookings .time {
+.MyBookingsPage .time {
   width: 84px;
   height: 31.59px;
   border-radius: 3px;
@@ -94,7 +183,7 @@
   color: #2aa7ff;
 }
 
-.MyBookings .date {
+.MyBookingsPage .date {
   width: 128px;
   height: 32px;
   border-radius: 3px;
@@ -105,8 +194,8 @@
   color: #00a500;
 }
 
-.MyBookings .time,
-.MyBookings .date {
+.MyBookingsPage .time,
+.MyBookingsPage .date {
   display: flex;
   align-items: center;
   justify-content: center;
